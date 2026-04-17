@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>猪人格测试</title>
+  <title>猪格测试</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       background: linear-gradient(135deg, #fff4f6 0%, #ffffff 45%, #fff7ed 100%);
       color: #1f2937;
     }
+
     .container {
       max-width: 920px;
       margin: 0 auto;
       padding: 24px;
     }
+
     .card {
+      position: relative;
       background: rgba(255,255,255,0.92);
       border-radius: 28px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.08);
@@ -25,18 +29,21 @@
       border: 1px solid rgba(255,255,255,0.7);
       backdrop-filter: blur(10px);
     }
+
     .hero {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 24px;
       align-items: center;
     }
+
     .pill-wrap {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       margin-top: 18px;
     }
+
     .pill {
       padding: 8px 14px;
       border-radius: 999px;
@@ -45,6 +52,7 @@
       font-size: 14px;
       font-weight: 600;
     }
+
     .hero-box {
       min-height: 280px;
       border-radius: 28px;
@@ -55,19 +63,23 @@
       text-align: center;
       padding: 24px;
     }
+
     h1 {
       font-size: 44px;
       line-height: 1.15;
       margin: 12px 0 16px;
     }
-    h2 { margin: 0; }
+
     .muted { color: #6b7280; }
+
     .btn-row {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       margin-top: 24px;
+      flex-wrap: wrap;
     }
+
     button {
       border: none;
       border-radius: 18px;
@@ -77,32 +89,64 @@
       cursor: pointer;
       transition: 0.18s ease;
     }
+
     .btn-primary {
       background: #111827;
       color: white;
     }
-    .btn-primary:hover { transform: translateY(-1px); opacity: 0.95; }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
     .btn-secondary {
       background: white;
       color: #111827;
       border: 1px solid #d1d5db;
     }
+
     .btn-secondary:hover { background: #f9fafb; }
+
     .btn-disabled {
       opacity: 0.45;
       cursor: not-allowed;
     }
+
+    .music-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 10;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: #111827;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    .music-btn:hover {
+      background: #fff7f7;
+      border-color: #fecdd3;
+    }
+
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       margin-bottom: 20px;
+      padding-right: 88px;
     }
+
     .progress-wrap {
       min-width: 180px;
       text-align: right;
     }
+
     .progress {
       width: 100%;
       height: 10px;
@@ -111,6 +155,7 @@
       overflow: hidden;
       margin-top: 8px;
     }
+
     .progress-bar {
       height: 100%;
       border-radius: 999px;
@@ -118,22 +163,26 @@
       width: 0%;
       transition: width 0.25s ease;
     }
+
     .question-box {
       border-radius: 28px;
       padding: 24px;
       background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
       border: 1px solid #ffe4e6;
     }
+
     .question-text {
       font-size: 30px;
       line-height: 1.45;
       font-weight: 700;
       margin-bottom: 22px;
     }
+
     .options {
       display: grid;
       gap: 12px;
     }
+
     .option {
       width: 100%;
       text-align: left;
@@ -143,32 +192,39 @@
       padding: 16px 18px;
       font-weight: 500;
     }
+
     .option:hover {
       background: #fff7f7;
       border-color: #fecdd3;
     }
+
     .option.active {
       background: #fff1f2;
       border-color: #fb7185;
       box-shadow: 0 4px 16px rgba(251,113,133,0.12);
     }
+
     .result-card {
+      position: relative;
       border-radius: 32px;
       padding: 28px;
       box-shadow: 0 12px 35px rgba(0,0,0,0.08);
       background: linear-gradient(135deg, #fff1f2 0%, #ffedd5 100%);
     }
+
     .result-title {
       font-size: 36px;
       margin: 10px 0;
       font-weight: 800;
     }
+
     .tag-wrap {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin: 18px 0;
     }
+
     .tag {
       background: rgba(255,255,255,0.78);
       padding: 8px 14px;
@@ -176,71 +232,181 @@
       font-size: 14px;
       font-weight: 700;
     }
+
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 18px;
     }
+
     .panel {
       background: rgba(255,255,255,0.72);
       border-radius: 20px;
       padding: 18px;
     }
+
     .panel h3 { margin-top: 0; }
+
     .score-block {
+      position: relative;
       margin-top: 22px;
       background: white;
       border-radius: 24px;
       padding: 22px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
     }
+
     ul { margin: 0; padding-left: 18px; }
     li { margin: 6px 0; }
+
     .hidden { display: none; }
 
+    .result-meta {
+      text-align: center;
+    }
+
+    .result-image-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 16px 0 10px;
+    }
+
+    .result-image {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .subtype-card {
+      margin-top: 16px;
+      background: rgba(255,255,255,0.72);
+      border-radius: 20px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .subtype-image {
+      width: 110px;
+      height: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .subtype-text {
+      flex: 1;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .qr-wrap {
+      margin-top: 20px;
+      text-align: center;
+      padding: 16px;
+      background: rgba(255,255,255,0.65);
+      border-radius: 20px;
+    }
+
+    .qr-image {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-top: 8px;
+      background: white;
+      padding: 6px;
+    }
+
     @media (max-width: 768px) {
-      .hero, .grid-2 { grid-template-columns: 1fr; }
-      h1 { font-size: 34px; }
-      .question-text { font-size: 24px; }
-      .topbar { flex-direction: column; align-items: flex-start; }
-      .progress-wrap { text-align: left; width: 100%; }
+      .hero, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .question-text {
+        font-size: 24px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 0;
+      }
+
+      .progress-wrap {
+        text-align: left;
+        width: 100%;
+      }
+
+      .result-title {
+        font-size: 30px;
+      }
+
+      .subtype-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .subtype-image {
+        width: 140px;
+      }
+
+      .music-btn {
+        top: 14px;
+        right: 14px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <section id="start-screen" class="card">
+      <button class="music-btn" onclick="toggleMusic()">🎵 音乐</button>
+
       <div class="hero">
         <div>
           <div class="muted" style="letter-spacing: 0.2em; text-transform: uppercase; font-size: 13px;">Pig Personality Test</div>
-          <h1>你的本命猪，<br>到底是哪一只？</h1>
+          <h1>平行时空里的你是一只小猪，<br>快来测测你是哪一种吧</h1>
           <p class="muted" style="font-size: 17px; line-height: 1.8;">
-            这是一套基于真实猪种外貌与行为特征延展出来的 24 题综合测试。
-            结果包含 13 个常规猪型和 1 个隐藏款「Big Bill 猪王」。
+            你醒啦，你刚刚好像做噩梦了，一直说什么上班调休考公考研这些乱七八糟的东西，
+            可是我们只是小猪呀。外面太阳这么好，快一起来跳泥坑吧。
           </p>
+
           <div class="pill-wrap">
             <span class="pill">24道题</span>
-            <span class="pill">14种结果</span>
-            <span class="pill">隐藏款机制</span>
           </div>
+
           <button class="btn-primary" style="margin-top: 24px;" onclick="startTest()">开始测试</button>
         </div>
+
         <div class="hero-box">
           <div>
             <div style="font-size: 72px;">🐷</div>
-            <div style="font-size: 18px; margin-top: 14px; color: #374151;">昆昆猪 / 绵羊猪 / 杜洛克 / 野猪 / 猪王…</div>
-            <div class="muted" style="margin-top: 8px;">做完才知道你是哪一种。</div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="quiz-screen" class="card hidden">
+      <button class="music-btn" onclick="toggleMusic()">🎵 音乐</button>
+
       <div class="topbar">
         <div>
-          <div class="muted" id="question-count">第 1 / 24 题</div>
-          <h2 id="dimension-title">社交性</h2>
+          <div class="muted" id="question-count">Q1 / 24</div>
         </div>
         <div class="progress-wrap">
           <div class="muted" id="progress-text">进度 0%</div>
@@ -261,22 +427,37 @@
 
     <section id="result-screen" class="hidden">
       <div id="result-card" class="result-card"></div>
+
       <div class="score-block">
+        <button class="music-btn" onclick="toggleMusic()">🎵 音乐</button>
+
         <h3 style="margin-top: 0;">这种类型的你</h3>
         <div id="type-explanation" style="line-height: 1.9; color: #374151;"></div>
-        <div class="btn-row" style="justify-content: flex-start; margin-top: 20px;">
+
+        <div class="result-actions">
+          <button class="btn-secondary" onclick="restartMusic()">🔁 重播音乐</button>
           <button class="btn-secondary" onclick="resetTest()">重新测试</button>
+        </div>
+
+        <div class="qr-wrap">
+          <div class="muted">扫码分享测试</div>
+          <img src="PIGTI.png" alt="分享二维码" class="qr-image">
         </div>
       </div>
     </section>
   </div>
+
+  <audio id="bgm" loop preload="auto">
+    <source src="./audio/Platinum Themes.mp3" type="audio/mpeg">
+    你的浏览器不支持音频播放
+  </audio>
 
   <script>
     const TYPES = {
       kunekune: {
         name: "昆昆猪",
         emoji: "🐷",
-        subtitle: "社交治愈型",
+        subtitle: "KuneKune Pig",
         tags: ["温和", "好相处", "情绪稳定"],
         description: "你像昆昆猪一样圆润温和，擅长和人建立舒服的连接。你很少主动制造冲突，更愿意维持关系里的平衡感。",
         strengths: ["共情力强", "容易让人放松", "适合团队协作"],
@@ -469,6 +650,23 @@
           growth: "你真正需要学的不是更强，而是收放。能控制自己的力量的人，才是真正的王。"
         }
       }
+    };
+
+    const IMAGE_MAP = {
+      kunekune: "./img/昆昆猪.png",
+      mangalitsa: "./img/绵羊猪.png",
+      jinhua: "./img/金华两头乌.png",
+      mini: "./img/小香猪.png",
+      largeblack: "./img/遮眼猪.png",
+      hampshire: "./img/白腰带猪.png",
+      wildboar: "./img/野猪.png",
+      bahamas: "./img/巴哈马猪.png",
+      duroc: "./img/杜洛克猪.png",
+      potbelly: "./img/大肚猪.png",
+      pietrain: "./img/斑点猪.png",
+      tibetan: "./img/藏香猪.png",
+      iberian: "./img/伊比利亚黑猪.png",
+      bigbill: "./img/Bigbill.png"
     };
 
     const QUESTIONS = [
@@ -745,7 +943,6 @@
     const quizScreen = document.getElementById("quiz-screen");
     const resultScreen = document.getElementById("result-screen");
     const questionCount = document.getElementById("question-count");
-    const dimensionTitle = document.getElementById("dimension-title");
     const progressText = document.getElementById("progress-text");
     const progressBar = document.getElementById("progress-bar");
     const questionText = document.getElementById("question-text");
@@ -754,17 +951,38 @@
     const prevBtn = document.getElementById("prev-btn");
     const resultCard = document.getElementById("result-card");
     const typeExplanation = document.getElementById("type-explanation");
+    const bgm = document.getElementById("bgm");
+
+    function safePlayMusic() {
+      bgm.play().catch(() => {
+        console.log("浏览器阻止了自动播放，需要用户点击后播放。");
+      });
+    }
+
+    function toggleMusic() {
+      if (bgm.paused) {
+        safePlayMusic();
+      } else {
+        bgm.pause();
+      }
+    }
+
+    function restartMusic() {
+      bgm.currentTime = 0;
+      safePlayMusic();
+    }
 
     function startTest() {
+      safePlayMusic();
       startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
       quizScreen.classList.remove("hidden");
       renderQuestion();
     }
 
     function renderQuestion() {
       const q = QUESTIONS[currentIndex];
-      questionCount.textContent = `第 ${currentIndex + 1} / ${QUESTIONS.length} 题`;
-      dimensionTitle.textContent = q.dimension;
+      questionCount.textContent = `Q${currentIndex + 1} / ${QUESTIONS.length}`;
 
       const progress = Math.round((currentIndex / QUESTIONS.length) * 100);
       progressText.textContent = `进度 ${progress}%`;
@@ -849,21 +1067,31 @@
     function showResult() {
       quizScreen.classList.add("hidden");
       resultScreen.classList.remove("hidden");
-      progressText.textContent = "进度 100%";
-      progressBar.style.width = "100%";
 
       const { resultKey, sorted } = calculateResult();
       const data = TYPES[resultKey];
       const runnerUp = sorted.find((item) => item.key !== resultKey && item.key !== "bigbill");
+      const resultImage = IMAGE_MAP[resultKey] || "";
+      const subtypeImage = runnerUp ? (IMAGE_MAP[runnerUp.key] || "") : "";
 
       resultCard.innerHTML = `
-        <div class="muted">测试结果</div>
-        <div class="result-title">${data.emoji} 你是：${data.name}</div>
-        <div style="font-size: 20px; color: #4b5563; font-weight: 600;">${data.subtitle}</div>
+        <button class="music-btn" onclick="toggleMusic()">🎵 音乐</button>
+
+        <div class="result-meta">
+          <div class="muted">测试结果</div>
+          <div class="result-image-wrap">
+            <img src="${resultImage}" alt="${data.name}" class="result-image">
+          </div>
+          <div class="result-title">${data.emoji} 你是：${data.name}</div>
+          <div style="font-size: 20px; color: #4b5563; font-weight: 600;">${data.subtitle}</div>
+        </div>
+
         <p style="line-height: 1.9; margin-top: 16px; font-size: 16px;">${data.description}</p>
+
         <div class="tag-wrap">
           ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
         </div>
+
         <div class="grid-2">
           <div class="panel">
             <h3>你的优点</h3>
@@ -874,7 +1102,19 @@
             <ul>${data.weaknesses.map(item => `<li>${item}</li>`).join("")}</ul>
           </div>
         </div>
-        ${runnerUp ? `<div class="panel" style="margin-top: 16px;"><strong>你的副型倾向：</strong> ${TYPES[runnerUp.key].name} ${TYPES[runnerUp.key].emoji}</div>` : ""}
+
+        ${runnerUp ? `
+          <div class="subtype-card">
+            <img src="${subtypeImage}" alt="${TYPES[runnerUp.key].name}" class="subtype-image">
+            <div class="subtype-text">
+              <div class="muted">你的副型倾向</div>
+              <div style="font-size: 24px; font-weight: 800; margin: 6px 0;">
+                ${TYPES[runnerUp.key].emoji} ${TYPES[runnerUp.key].name}
+              </div>
+              <div style="color: #4b5563; font-weight: 600;">${TYPES[runnerUp.key].subtitle}</div>
+            </div>
+          </div>
+        ` : ""}
       `;
 
       typeExplanation.innerHTML = `
@@ -882,6 +1122,9 @@
         <p><strong>关系模式：</strong>${data.interpretation.relation}</p>
         <p><strong>成长建议：</strong>${data.interpretation.growth}</p>
       `;
+
+      safePlayMusic();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function resetTest() {
@@ -890,6 +1133,9 @@
       resultScreen.classList.add("hidden");
       quizScreen.classList.add("hidden");
       startScreen.classList.remove("hidden");
+      progressText.textContent = "进度 0%";
+      progressBar.style.width = "0%";
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   </script>
 </body>
